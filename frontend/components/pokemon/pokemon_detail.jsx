@@ -7,11 +7,13 @@ class PokemonDetail extends React.Component {
   }
 
   componentDidMount(){
-    this.props.requestSinglePokemon(this.props.params.id);
+    this.props.requestSinglePokemon(this.props.params.pokemonId);
   }
 
   componentWillReceiveProps(newProps){
-    this.props.requestSinglePokemon(newProps.params.id);
+    if (this.props.params.pokemonId !== newProps.params.pokemonId) {
+      this.props.requestSinglePokemon(newProps.params.pokemonId);
+    }
   }
 
   render() {
@@ -21,13 +23,13 @@ class PokemonDetail extends React.Component {
     if (pokemon.items) {
       items = pokemon.items.map((item) => (
         <li key={ item.id }>
-          <Link to={`/items/${ item.id }`}>
+          <Link to={`pokemon/${ pokemon.id }/items/${ item.id }`}>
             <img src={`${item.image_url}`} key={ item.id }></img>
           </Link>
         </li>
       ));
     }
-    
+
     return (
       <section>
         <figure>
