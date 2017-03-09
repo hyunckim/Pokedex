@@ -1,10 +1,11 @@
 import React from 'react';
 import { merge } from 'lodash';
+import { withRouter } from 'react-router';
 
 const TYPES = [
+  "normal",
   "fire",
   "electric",
-  "normal",
   "ghost",
   "psychic",
   "water",
@@ -27,7 +28,7 @@ class PokemonForm extends React.Component {
       id: 0,
       name: "",
       image_url: "",
-      poke_type: "",
+      poke_type: "normal",
       attack: 0,
       defense: 0,
       move1: "",
@@ -54,6 +55,8 @@ class PokemonForm extends React.Component {
       attack: this.state.attack,
       defense: this.state.defense,
       moves: [this.state.move1, this.state.move2]
+    }).then((newPokemon) => {
+      this.props.router.push(`pokemon/${newPokemon.id}`);
     });
   }
 
@@ -82,4 +85,4 @@ class PokemonForm extends React.Component {
   }
 }
 
-export default PokemonForm;
+export default withRouter(PokemonForm);
