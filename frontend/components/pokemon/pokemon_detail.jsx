@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 class PokemonDetail extends React.Component {
   constructor(props){
@@ -15,7 +16,18 @@ class PokemonDetail extends React.Component {
 
   render() {
     const { pokemon } = this.props;
+    let items = "";
 
+    if (pokemon.items) {
+      items = pokemon.items.map((item) => (
+        <li key={ item.id }>
+          <Link to={`/items/${ item.id }`}>
+            <img src={`${item.image_url}`} key={ item.id }></img>
+          </Link>
+        </li>
+      ));
+    }
+    
     return (
       <section>
         <figure>
@@ -28,6 +40,12 @@ class PokemonDetail extends React.Component {
           <li>{ pokemon.defense }</li>
           <li>{ pokemon.moves }</li>
         </ul>
+        <section>
+          <ul>
+            { items }
+          </ul>
+          { this.props.children }
+        </section>
       </section>
     );
   }
