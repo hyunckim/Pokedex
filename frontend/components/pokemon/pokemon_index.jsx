@@ -1,9 +1,9 @@
 import React from 'react';
+import PokemonIndexItem from './pokemon_index_item';
 
 export class PokemonIndex extends React.Component {
   constructor(props){
     super(props);
-
   }
 
   componentDidMount() {
@@ -12,7 +12,7 @@ export class PokemonIndex extends React.Component {
 
   render() {
     const pokemons = this.props.pokemon.map((pokemon) => {
-       return <Pokemon key={ pokemon.id }name={ pokemon.name } imageUrl={ pokemon.image_url }/>;
+      return <PokemonIndexItem key={ pokemon.id } pokemon={ pokemon }/>;
     });
 
     return(
@@ -20,17 +20,8 @@ export class PokemonIndex extends React.Component {
         <ul>
           { pokemons }
         </ul>
+        { this.props.children }
       </div>
     );
   }
 }
-
-
-const Pokemon = ({name, imageUrl}) => {
-  return (
-    <li>
-      { name }
-      <img src={ imageUrl }></img>
-    </li>
-  );
-};
