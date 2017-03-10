@@ -68,8 +68,23 @@ class PokemonForm extends React.Component {
       );
     });
 
+    let { errors } = this.props;
+    let allErrors = [];
+    if(errors.length) {
+      allErrors = errors.map((error, idx) => {
+        return (
+          <li key={ idx }>{ error }</li>
+        );
+      });
+    }
+
     return(
       <form>
+
+        <ul>
+          { allErrors }
+        </ul>
+
         <input type='text' placeholder='Name' onChange={ this.handleInput('name') } value={this.state.name}></input>
         <input type='text'placeholder='Image Url' onChange={ this.handleInput('image_url') } value={this.state.image_url}></input>
         <select onChange={ this.handleInput('poke_type') }>
