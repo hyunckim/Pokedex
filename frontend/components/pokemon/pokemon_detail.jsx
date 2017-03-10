@@ -31,7 +31,7 @@ class PokemonDetail extends React.Component {
     }
 
     return (
-      <section>
+      <section className="pokemonDetail">
         <figure>
           <img src={ pokemon.image_url } />
         </figure>

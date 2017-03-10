@@ -10,23 +10,17 @@ export class PokemonIndex extends React.Component {
     this.props.requestAllPokemon();
   }
 
-  // componentWillReceiveProps(newProps){
-  //   if (this.props.params.pokemonId !== newProps.params.pokemonId) {
-  //     this.props.requestAllPokemon();
-  //   }
-  // }
-
   render() {
     const pokemons = this.props.pokemon.map((pokemon) => {
       return <PokemonIndexItem key={ pokemon.id } pokemon={ pokemon }/>;
     });
 
     return(
-      <div>
-        { this.props.children }
-        <ul>
+      <div className="app">
+        <ol className="pokemonIndex">
           { pokemons }
-        </ul>
+        </ol>
+        { this.props.children }
       </div>
     );
   }
